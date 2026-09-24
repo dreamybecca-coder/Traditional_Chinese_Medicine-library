@@ -18,6 +18,24 @@ export interface Medicine {
   noteSections?: NoteSection[];
 }
 
+export interface Herb {
+  name: string;
+  dose?: string;
+  source?: string;
+  intent?: string;
+}
+
+export interface Visit {
+  name: string;
+  herbs: Herb[];
+  analysis: string[];
+}
+
+export interface RelatedLink {
+  id: string | null;
+  title: string;
+}
+
 export interface MedCase {
   id: string;
   patient?: string;
@@ -28,6 +46,18 @@ export interface MedCase {
   reflection?: string;
   tags?: string[];
   noteSections?: NoteSection[];
+  /* —— 富结构医案（content/ Markdown 解析而来） —— */
+  no?: number;
+  title?: string;
+  method?: string;
+  history?: string[];
+  visits?: Visit[];
+  turningPoint?: string;
+  teachingPoints?: string[];
+  safetyNotes?: string[];
+  pending?: string[];
+  related?: RelatedLink[];
+  hasSafety?: boolean;
 }
 
 export interface Protocol {

@@ -1,4 +1,4 @@
-import rawData from '../data.json';
+import rawData from '../data.merged.json';
 import type { TcmData, Medicine, MedCase, TongueTip, Acupoint, DetailRef } from '../types';
 
 export const data = rawData as TcmData;
@@ -80,7 +80,8 @@ export function searchAll(query: string): SearchResults {
     medicines: data.medicines.filter(m =>
       match([m.name, m.category, m.functions, m.ingredients, m.indications, m.applicable], m.tags)),
     cases: data.cases.filter(c =>
-      match([c.patient, c.chiefComplaint, c.syndrome, c.formula, c.effect], c.tags)),
+      match([c.patient, c.title, c.method, c.chiefComplaint, c.syndrome, c.formula, c.effect,
+        (c.teachingPoints ?? []).join(' ')], c.tags)),
     tongue: data.tongue.filter(t => match([t.sign, t.location, t.meaning, t.diagnosis], t.tags)),
     acupoints: data.acupoints.filter(a =>
       match([a.name, a.location, a.method, a.func, a.indications], a.tags)),

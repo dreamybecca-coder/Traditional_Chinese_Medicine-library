@@ -76,13 +76,14 @@ export function CaseCard({ item: c, onOpen }: CardProps<MedCase>) {
       className="w-full rounded-xl border border-border bg-card p-4 text-left shadow-xs transition-transform active:scale-[0.98]"
     >
       <div className="flex items-center justify-between gap-2">
-        <span className="text-xs text-muted-foreground">{c.patient}</span>
+        <span className="text-xs text-muted-foreground">{c.no ? `医案 ${c.no} · ` : ''}{c.patient}</span>
         {c.syndrome && (
           <span className="shrink-0 rounded border border-dai/40 px-1.5 py-0.5 text-[10px] leading-none text-dai">
             {c.syndrome.split('，')[0]}
           </span>
         )}
       </div>
+      {c.title && <p className="font-serif-cn mt-1.5 text-[15px] font-bold leading-snug">{c.title}</p>}
       <p className="mt-1.5 line-clamp-2 text-sm font-medium leading-relaxed">{c.chiefComplaint}</p>
       {c.effect && (
         <p className="mt-2 line-clamp-2 rounded-lg bg-secondary/70 px-2.5 py-1.5 text-[12px] leading-relaxed text-foreground/80">
